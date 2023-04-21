@@ -1,18 +1,20 @@
 #! /bin/bash
+# ./count_over_time.sh your-app git@gitlab.com/acme/your-app.git main
 
 project_name=$1
 git_clone_url=$2
 main_branch=$3
 
 # Prepare work folder on which we will change branch
-work_folder="$project_name-$(date '+%Y-%m-%d-%H-%M-%S')"
-
+mkdir "tmp"
+work_folder="tmp/$project_name-$(date '+%Y-%m-%d-%H-%M-%S')"
 echo "Cloning project to work folder $work_folder..."
 git clone $git_clone_url $work_folder
 cd $work_folder
 
 # Init report file
-report_file="../$work_folder.csv"
+mkdir "../out"
+report_file="../out/$work_folder.csv"
 echo "DATE;LOC" > $report_file
 
 # Get first date to work on if none provided
@@ -60,5 +62,5 @@ done
 # Recap CSV export
 echo
 echo "=============================================================================="
-echo "CSV report exported to $work_folder.csv, time for you to make it shine! ✨"
+echo "CSV report exported to out/$work_folder.csv, time for you to make it shine! ✨"
  

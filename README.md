@@ -7,15 +7,15 @@ It has been made and tested for Linux Mint (Ubuntu / Debian based). Feel free to
 
 In order to make it work, you'll need to have git and sloccount installed + a git repository with clone access.
 
-If you have a debian based system, simply launch `make install` to install them.
+If you have a debian based system, simply launch `sudo apt install git sloccount` to install them.
 
 ## Basic usage
 
 ```bash
-./count_over_time.sh project-name git@plop.com/project main
+./count_over_time.sh your-project git@gitlab.com.com/your-project.git main
 ```
 
-The script will start by making a fresh clone of your repository in a 
+The script will start by making a fresh clone of your repository in a local folder
 
 Then it will go back in time in this local copy by 1-month steps and launch SLOCcount at each step, to get the total line count.
 
