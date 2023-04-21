@@ -21,18 +21,26 @@ Then it will go back in time in this local copy by 1-month steps and launch SLOC
 
 The total will be reported in the output CSV file that you can send to any graphing tool, like LibreOffice Calc for example.
 
-Here is an example of result:
+Here is an example of result with DatWrapper:
 
+[[/doc/example_graph_datawrapper.png|Graph generated with DataWrapper]]
 
+Or with LibreOffice calc
+
+[[/doc/example_graph_libreoffice.png|Graph generated with LibreOffice]]
 
 ## Customisation
 
-It's possible that the default total line count does not suit you.  In that case you'll have to modify the sloccount call & result parsing
+It's possible that measuring the default total line count does not suit you. In that case you'll have to modify the sloccount call & result parsing
 
-If one month is too short or too long for your needs, you'll have to modify the 'while' loop, good luck but it should be doable ;)
+If one month is too short or too long for your needs, you'll have to modify the 'while' loop. Good luck but it should be doable ;)
 
 ## Credits
 
-SLOCount https://dwheeler.com/sloccount/sloccount.html
+* SLOCount https://dwheeler.com/sloccount/sloccount.html
 
-Git https://git-scm.com/
+* Git https://git-scm.com/
+
+* LibreOffice calc https://www.libreoffice.org/
+
+* DataWrapper https://app.datawrapper.de
