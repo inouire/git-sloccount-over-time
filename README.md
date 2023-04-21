@@ -1,4 +1,4 @@
-# git-sloccount-over-time
+# git-sloccount-over-time: graph your code mass evolution 📈
 
 This little bash script uses SLOCCount and Git to **extract the code lines count** of you project over time, ready to be graphed by any tool you like.
 It has been made and tested for Linux Mint (Ubuntu / Debian based). Feel free to test and adapt to your own platform.
@@ -28,13 +28,15 @@ cd git-sloccount-over-time
 
 * The total will be reported in the output CSV file that you can send to any graphing tool, like LibreOffice Calc for example.
 
+**Console output**
+
 ![Script console output](/doc/example_console_output.png)
 
-Here is an example of result with Datawrapper:
+**Rendering with Datawrapper**
 
 ![Graph generated with DataWrapper](/doc/example_graph_datawrapper.png)
 
-Or with LibreOffice calc
+**Rendering with LibreOffice calc**
 
 ![Graph generated with DataWrapper](/doc/example_graph_libreoffice.png)
 
