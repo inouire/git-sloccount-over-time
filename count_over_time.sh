@@ -6,8 +6,7 @@ git_clone_url=$2
 main_branch=$3
 
 # Prepare work folder on which we will change branch
-mkdir "tmp"
-mkdir "out"
+mkdir -p "tmp" "out"
 folder_name="$project_name-$(date '+%Y-%m-%d-%H-%M-%S')"
 work_folder="tmp/$folder_name"
 echo "Cloning project to work folder $work_folder..."
@@ -46,7 +45,7 @@ while [[ $current_year -lt $last_commit_year || ($current_year -eq $last_commit_
 	IFS='='
 	read -ra total_count_items <<< "$total_count_line"
 	total_count=${total_count_items[-1]/,/}
-	echo "$total_count line of codes detected by sloccount 🧾"
+	echo "$total_count lines of code detected by sloccount 🧾"
 
 	# Save it in csv report
 	echo "$year_month;$total_count" >> $report_file
@@ -59,8 +58,7 @@ while [[ $current_year -lt $last_commit_year || ($current_year -eq $last_commit_
     fi
 done
 
-# Recap CSV export
-echo
+echo ""
 echo "=============================================================================="
 echo "CSV report exported to out/$work_folder.csv, time for you to make it shine! ✨"
  
