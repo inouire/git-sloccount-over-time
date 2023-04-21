@@ -7,14 +7,15 @@ main_branch=$3
 
 # Prepare work folder on which we will change branch
 mkdir "tmp"
-work_folder="tmp/$project_name-$(date '+%Y-%m-%d-%H-%M-%S')"
+mkdir "out"
+folder_name="$project_name-$(date '+%Y-%m-%d-%H-%M-%S')"
+work_folder="tmp/$folder_name"
 echo "Cloning project to work folder $work_folder..."
 git clone $git_clone_url $work_folder
 cd $work_folder
 
 # Init report file
-mkdir "../out"
-report_file="../out/$work_folder.csv"
+report_file="../../out/$folder_name.csv"
 echo "DATE;LOC" > $report_file
 
 # Get first date to work on if none provided
@@ -28,14 +29,13 @@ last_commit_year=$(date +%Y)
 last_commit_month=$(date +%m)
 echo "Looping between $first_commit_year-$first_commit_month and $last_commit_year-$last_commit_month (now), this can take a while"
 
-# Loop on date range, ChatGPT helped me on this loop ;)
+# Loop on date range, ChatGPT helped me with Bash syntax on this loop ;)
 current_year=$first_commit_year
 current_month=$first_commit_month
 
 while [[ $current_year -lt $last_commit_year || ($current_year -eq $last_commit_year && $current_month -le $last_commit_month) ]]; do
 	year_month=$(printf "%04d-%02d" "$current_year" "$current_month")
-
-    printf "🤖 Counting line of codes on $ymonth 📆..."
+    printf "🤖 Counting line of codes on $year_month 📆..."
     
     # Jump to commit at the given time
 	git checkout --force $main_branch > /dev/null 2>&1
