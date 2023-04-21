@@ -1,6 +1,6 @@
 # git-sloccount-over-time
 
-This little bash script uses SLOCCount and Git to count the lines of code in you project over time, ready to be graphed by any tool you like.
+This little bash script uses SLOCCount and Git to **extract the code lines count** of you project over time, ready to be graphed by any tool you like.
 It has been made and tested for Linux Mint (Ubuntu / Debian based). Feel free to test and adapt to your own platform.
 
 ## Setup
@@ -28,7 +28,9 @@ cd git-sloccount-over-time
 
 * The total will be reported in the output CSV file that you can send to any graphing tool, like LibreOffice Calc for example.
 
-Here is an example of result with DatWrapper:
+![Script console output](/doc/example_console_output.png)
+
+Here is an example of result with Datawrapper:
 
 ![Graph generated with DataWrapper](/doc/example_graph_datawrapper.png)
 
@@ -36,11 +38,15 @@ Or with LibreOffice calc
 
 ![Graph generated with DataWrapper](/doc/example_graph_libreoffice.png)
 
-## Customisation
+## Considerations
 
-It's possible that measuring the default total line count does not suit you. In that case you'll have to modify the sloccount call & result parsing
+💡 Git clones are not deleted automatically, so don't forget to clean them if you run the script multiple times.
 
-If one-month-steps are too short or too long for your needs, you'll have to modify the 'while' loop. Good luck with bash logic, but it should be doable 🙃
+💡 SLOCCount counts the line of codes in a certain way, which should be pretty accurate. Anyways, the exact count does not really matter, the most important being the evolution of you code mass.
+
+⚙️ It's possible that measuring the default total line count does not suit you. In that case you'll have to modify the sloccount call & result parsing
+
+⚙️ If one-month-steps are too short or too long for your needs, you'll have to modify the 'while' loop. Good luck with bash logic, but it should be doable 🙃
 
 ## Credits
 
@@ -50,6 +56,6 @@ If one-month-steps are too short or too long for your needs, you'll have to modi
 
 * LibreOffice calc https://www.libreoffice.org/
 
-* DataWrapper https://app.datawrapper.de
+* Datawrapper https://app.datawrapper.de
 
 * PPE analytics (I work there) https://www.ppe-analytics.com/
