@@ -40,6 +40,12 @@ cd git-sloccount-over-time
 
 ![Graph generated with DataWrapper](/doc/example_graph_libreoffice.png)
 
+It's also possible to get latest count only. This is a simple way to get a consistent measure with a fresh clone, for debug or curiosity purposes.
+
+```bash
+./count_once.sh your-project git@gitlab.com.com/your-project.git main
+```
+
 ## Considerations
 
 💡 Git clones are not deleted automatically, so don't forget to clean them if you run the script multiple times.
