@@ -52,7 +52,7 @@ It's also possible to get latest count only. This is a simple way to get a consi
 
 💡 SLOCCount counts the line of codes in a certain way, which should be pretty accurate. Anyways, the exact count does not really matter, the most important being the evolution of you code mass.
 
-⚙️ It's possible that measuring the default total line count does not suit you. In that case you'll have to modify the sloccount call & result parsing
+⚙️ It's possible that measuring the default total line count does not suit you. In that case you'll have to modify the sloccount call & result parsing in file `call_sloccount.sh`
 
 ⚙️ If one-month-steps are too short or too long for your needs, you'll have to modify the 'while' loop. Good luck with bash logic, but it should be doable 🙃
 
