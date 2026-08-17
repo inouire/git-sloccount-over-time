@@ -18,21 +18,28 @@ report_file="../../out/$folder_name.csv"
 echo "DATE;LOC" > $report_file
 
 # Get first date to work on if none provided
-first_commit=$(git log --reverse --date="format:%Y-%m" --all | sed -n -e "3,3p")
+first_commit=$(git log --reverse --date="format:%Y-%m-%d" --all | sed -n -e "3,3p")
 first_commit_year=$((${first_commit:8:4}))
 first_commit_month=$((${first_commit:13:2}))
-echo "Detect first commit month for project: $first_commit_year / $first_commit_month"
+first_commit_day=$((${first_commit:16:2}))
+echo "Detect first commit month for project: $first_commit_year / $first_commit_month / $first_commit_day"
 
 # Get today date to prepare our loop
 last_commit_year=$(date +%Y)
 last_commit_month=$(date +%m)
+last_commit_day=$(date +%d)
 last_commit_month=$((10#$last_commit_month))
+last_commit_day=$((10#$last_commit_day))
 echo "Looping between $first_commit_year-$first_commit_month and $last_commit_year-$last_commit_month (now), this can take a while"
 
 # Loop on date range, ChatGPT helped me with Bash syntax on this loop ;)
 current_year=$first_commit_year
 current_month=$first_commit_month
 
+# Initial capture: no code
+echo "$first_commit_year-$first_commit_month-$first_commit_day;0" >> $report_file
+
+# One capture per month
 while [[ $current_year -lt $last_commit_year || ($current_year -eq $last_commit_year && $current_month -le $last_commit_month) ]]; do
 	year_month=$(printf "%04d-%02d" "$current_year" "$current_month")
     printf "🤖 Counting line of codes on $year_month 📆..."
@@ -45,7 +52,7 @@ while [[ $current_year -lt $last_commit_year || ($current_year -eq $last_commit_
     source "../../call_sloccount.sh"
 
 	# Save it in csv report
-	echo "$year_month;$total_count" >> $report_file
+	echo "$year_month-01;$total_count" >> $report_file
 
 	# Jump to next month
     current_month=$((current_month + 1))
@@ -54,6 +61,11 @@ while [[ $current_year -lt $last_commit_year || ($current_year -eq $last_commit_
         current_year=$((current_year + 1))
     fi
 done
+
+# Last capture: today
+git checkout --force `git rev-list -n 1 --first-parent --before="$last_commit_year-$last_commit_month-$last_commit_day" $main_branch` > /dev/null 2>&1
+source "../../call_sloccount.sh"
+echo "$last_commit_year-$last_commit_month-$last_commit_day;$total_count" >> $report_file
 
 echo ""
 echo "=============================================================================="
